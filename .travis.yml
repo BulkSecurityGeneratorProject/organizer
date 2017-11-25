@@ -33,7 +33,7 @@ script:
   - chmod +x mvnw
   - ./mvnw clean test
   - yarn test
-  - ./mvnw verify -Pprod -DskipTests dockerfile:build
+  - ./mvnw verify dockerfile:build -Pprod -DskipTests
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
