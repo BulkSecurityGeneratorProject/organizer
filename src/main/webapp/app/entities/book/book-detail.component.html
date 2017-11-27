@@ -12,6 +12,12 @@
         <dd>
             <span jhiTranslate="{{'organizerApp.Language.' + book.language}}">{{book.language}}</span>
         </dd>
+        <dt><span jhiTranslate="organizerApp.book.author">Author</span></dt>
+        <dd>
+            <div *ngIf="book.authorId">
+                <a [routerLink]="['/author', book.authorId]">{{book.authorName}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

@@ -3,6 +3,8 @@ package org.organizer.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 import org.organizer.domain.enumeration.Language;
 
@@ -18,6 +20,10 @@ public class BookDTO implements Serializable {
 
     @NotNull
     private Language language;
+
+    private Long authorId;
+
+    private String authorName;
 
     public Long getId() {
         return id;
@@ -41,6 +47,22 @@ public class BookDTO implements Serializable {
 
     public void setLanguage(Language language) {
         this.language = language;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     @Override

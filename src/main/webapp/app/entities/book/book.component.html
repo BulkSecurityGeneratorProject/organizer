@@ -19,6 +19,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="title"><span jhiTranslate="organizerApp.book.title">Title</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="language"><span jhiTranslate="organizerApp.book.language">Language</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="authorName"><span jhiTranslate="organizerApp.book.author">Author</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -27,6 +28,11 @@
                 <td><a [routerLink]="['../book', book.id ]">{{book.id}}</a></td>
                 <td>{{book.title}}</td>
                 <td jhiTranslate="{{'organizerApp.Language.' + book.language}}">{{book.language}}</td>
+                <td>
+                    <div *ngIf="book.authorId">
+                        <a [routerLink]="['../author', book.authorId  ]" >{{book.authorName}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

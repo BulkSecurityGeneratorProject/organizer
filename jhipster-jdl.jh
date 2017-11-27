@@ -4,11 +4,15 @@ entity Book {
 }
 
 entity Author {
-	name String required,
+    name String required,
 }
 
 enum Language {
     FRENCH, ENGLISH, SPANISH
+}
+
+relationship OneToMany {
+    Author{book} to Book{author(name)}
 }
 
 // Set pagination options

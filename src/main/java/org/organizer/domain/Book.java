@@ -34,6 +34,9 @@ public class Book implements Serializable {
     @Column(name = "language", nullable = false)
     private Language language;
 
+    @ManyToOne
+    private Author author;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -67,6 +70,19 @@ public class Book implements Serializable {
 
     public void setLanguage(Language language) {
         this.language = language;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public Book author(Author author) {
+        this.author = author;
+        return this;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

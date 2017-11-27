@@ -11,6 +11,7 @@ export class Book implements BaseEntity {
         public id?: number,
         public title?: string,
         public language?: Language,
+        public authorId?: number,
     ) {
     }
 }

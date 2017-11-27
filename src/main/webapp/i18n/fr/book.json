@@ -16,7 +16,8 @@
                 "title": "Book"
             },
             "title": "Title",
-            "language": "Language"
+            "language": "Language",
+            "author": "Author"
         }
     }
 }

@@ -15,7 +15,8 @@
             "detail": {
                 "title": "Author"
             },
-            "name": "Name"
+            "name": "Name",
+            "book": "Book"
         }
     }
 }

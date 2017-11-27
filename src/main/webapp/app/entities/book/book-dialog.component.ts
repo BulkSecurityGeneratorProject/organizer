@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Book } from './book.model';
 import { BookPopupService } from './book-popup.service';
 import { BookService } from './book.service';
+import { Author, AuthorService } from '../author';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-book-dialog',
@@ -19,16 +21,21 @@ export class BookDialogComponent implements OnInit {
     book: Book;
     isSaving: boolean;
 
+    authors: Author[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private bookService: BookService,
+        private authorService: AuthorService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.authorService.query()
+            .subscribe((res: ResponseWrapper) => { this.authors = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -63,6 +70,10 @@ export class BookDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackAuthorById(index: number, item: Author) {
+        return item.id;
     }
 }
 

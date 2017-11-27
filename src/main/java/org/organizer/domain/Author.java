@@ -1,11 +1,14 @@
 package org.organizer.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 
@@ -27,6 +30,11 @@ public class Author implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "author")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Book> books = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -47,6 +55,31 @@ public class Author implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public Author books(Set<Book> books) {
+        this.books = books;
+        return this;
+    }
+
+    public Author addBook(Book book) {
+        this.books.add(book);
+        book.setAuthor(this);
+        return this;
+    }
+
+    public Author removeBook(Book book) {
+        this.books.remove(book);
+        book.setAuthor(null);
+        return this;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
